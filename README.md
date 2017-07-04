@@ -28,7 +28,7 @@ Convert to wave files:
 
 Remove one channel to make it mono, downsample to 24k/s and trim the first 4.75s of speech / silence.
 
-`$ sox TNC_Test01.wav TNC_Test01-mono242.wav remix 1 rate 24k trim 4.75`
+`$ sox TNC_Test01.wav TNC_Test01-mono24.wav remix 1 rate 24k trim 4.75`
 
 Then give the path to one of these files as the first argument of the program. The program will try to decode any afsk ax.25 frames.
 
@@ -52,5 +52,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
+* [WA8LMF Stephen Smith](http://wa8lmf.net/) for his excellent test CD.
 * The ring buffer code was inspired by [Juho Snellman](https://www.snellman.net/blog/archive/2016-12-13-ring-buffers/)
 * The DSP code was inspired by [The Scientist and Engineer's Guide to Digital Signal Processing](http://www.dspguide.com), an amazing book!
