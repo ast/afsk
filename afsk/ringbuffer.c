@@ -15,7 +15,7 @@
 #include <string.h>
 
 void rb_init(ringbuffer_t* rb, uint32_t capacity) {
-    assert(capacity <= MAX_CAPACITY);
+    assert(capacity > 0 && capacity <= MAX_CAPACITY);
     rb->capacity = capacity;
     rb->read = rb->write = 0;
     memset(rb->buffer, 0, sizeof rb->buffer);

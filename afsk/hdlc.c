@@ -20,44 +20,26 @@ void hdlc_init(hdlc_t *hdlc) {
     hdlc->rx_state = false;
     hdlc->rx_ptr = hdlc->rx_buf;
     memset(hdlc->rx_buf, 0x00, sizeof(hdlc->rx_buf));
-
-}
-
-void write_erl_packet(uint8_t *bytes, uint16_t len) {
-    size_t written;
-    uint8_t li;
-
-    li = (len >> 8) & 0xff;
-    written = write(1, &li, 1);
-    assert(written == 1);
-
-    li = len & 0xff;
-    written = write(1, &li, 1);
-    assert(written == 1);
-
-    written = write(1, bytes, len);
-    assert(written == len);
     
-    sleep(1);
+    hdlc->n_packets = 0;
 }
 
-
+// High-Level Data Link Control (HDLC)
 void hdlc_rx_bit(hdlc_t *hdlc, uint8_t bit) {
     // New bit arriving. Shift left by one.
     //Double negation is guaranteed to return 0/1.
     hdlc->bitstream <<= 1;
     hdlc->bitstream |= !!bit;
     
-    // Frame flag
-    // 0b01111110
+    // Look for HDLC frame flag 0b01111110
     if((hdlc->bitstream & 0xff) == hdl_frame_flag) {
-        
         if (hdlc->rx_state &&
             (hdlc->rx_ptr - hdlc->rx_buf) > 2) {
 
             if(check_crc_ccitt(hdlc->rx_buf, (int) (hdlc->rx_ptr - hdlc->rx_buf))) {
-                //printf("checksum ok.");
-                write_erl_packet(hdlc->rx_buf, hdlc->rx_ptr - hdlc->rx_buf);
+                
+                hdlc->n_packets++;
+                //write_erl_packet(hdlc->rx_buf, hdlc->rx_ptr - hdlc->rx_buf);
             }
         }
         
@@ -87,13 +69,11 @@ void hdlc_rx_bit(hdlc_t *hdlc, uint8_t bit) {
     
     // Got byte
     if (hdlc->bitbuf & 1) {
-        
         if (hdlc->rx_ptr >= hdlc->rx_buf+sizeof(hdlc->rx_buf)) {
             hdlc->rx_state = false;
             fprintf(stderr, "Error: packet to large.\n");
             return;
         }
-        
         *hdlc->rx_ptr++ = hdlc->bitbuf >> 1;
         hdlc->bitbuf = 0x80;
         

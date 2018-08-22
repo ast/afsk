@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B14511C51EEA8AD700FCDD10 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = B14511C41EEA8AD700FCDD10 /* main.c */; };
 		B14511CD1EEA8CE600FCDD10 /* libsndfile.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B14511CC1EEA8CE600FCDD10 /* libsndfile.dylib */; };
+		B16846D7212D4FD50052FC60 /* modem.c in Sources */ = {isa = PBXBuildFile; fileRef = B16846D6212D4FD50052FC60 /* modem.c */; };
 		B1DDB1401EEAA1DA00350DFC /* ringbuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = B1DDB13F1EEAA1DA00350DFC /* ringbuffer.c */; };
 		B1DDB1461EEAB97400350DFC /* hdlc.c in Sources */ = {isa = PBXBuildFile; fileRef = B1DDB1441EEAB97400350DFC /* hdlc.c */; };
 		B1DDB1491EEB39F000350DFC /* crc.c in Sources */ = {isa = PBXBuildFile; fileRef = B1DDB1471EEB39F000350DFC /* crc.c */; };
@@ -33,6 +34,8 @@
 		B14511C41EEA8AD700FCDD10 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		B14511CC1EEA8CE600FCDD10 /* libsndfile.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsndfile.dylib; path = ../../../../../usr/local/lib/libsndfile.dylib; sourceTree = "<group>"; };
 		B14511CF1EEA960500FCDD10 /* ringbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ringbuffer.h; sourceTree = "<group>"; };
+		B16846D5212D4FD50052FC60 /* modem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = modem.h; sourceTree = "<group>"; };
+		B16846D6212D4FD50052FC60 /* modem.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = modem.c; sourceTree = "<group>"; };
 		B1DDB13F1EEAA1DA00350DFC /* ringbuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ringbuffer.c; sourceTree = "<group>"; };
 		B1DDB1441EEAB97400350DFC /* hdlc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hdlc.c; sourceTree = "<group>"; };
 		B1DDB1451EEAB97400350DFC /* hdlc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hdlc.h; sourceTree = "<group>"; };
@@ -101,6 +104,8 @@
 		B1DDB14F1EEBE21B00350DFC /* hdlc */ = {
 			isa = PBXGroup;
 			children = (
+				B16846D5212D4FD50052FC60 /* modem.h */,
+				B16846D6212D4FD50052FC60 /* modem.c */,
 				B1DDB1501EEBE22400350DFC /* crc */,
 				B1DDB1441EEAB97400350DFC /* hdlc.c */,
 				B1DDB1451EEAB97400350DFC /* hdlc.h */,
@@ -176,6 +181,7 @@
 			files = (
 				B14511C51EEA8AD700FCDD10 /* main.c in Sources */,
 				B1DDB1401EEAA1DA00350DFC /* ringbuffer.c in Sources */,
+				B16846D7212D4FD50052FC60 /* modem.c in Sources */,
 				B1DDB1491EEB39F000350DFC /* crc.c in Sources */,
 				B1DDB1461EEAB97400350DFC /* hdlc.c in Sources */,
 			);

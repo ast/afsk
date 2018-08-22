@@ -16,7 +16,7 @@
 #include <stdint.h>
 #include <assert.h>
 
-static const int MAX_CAPACITY = 512;
+#define MAX_CAPACITY 128    
 
 typedef struct ringbuffer {
     // Just statically allocate a max_capacity buffer.
@@ -36,22 +36,25 @@ static inline bool rb_empty(ringbuffer_t* rb) { return rb->read == rb->write; }
 static inline uint32_t rb_size(ringbuffer_t* rb) { return rb->write - rb->read; }
 static inline bool rb_full(ringbuffer_t* rb) { return rb_size(rb) == rb->capacity; }
 
-static inline void rb_push(ringbuffer_t *rb, float val) {
+static inline void
+rb_push(ringbuffer_t *rb, float val) {
     assert(!rb_full(rb));
     rb->buffer[rb_mask(rb->write++)] = val;
 }
 
-static inline float rb_read(ringbuffer_t* rb, uint32_t i) {
+static inline float
+rb_read(ringbuffer_t* rb, uint32_t i) {
     assert(rb_size(rb) > i);
     return rb->buffer[rb_mask(rb->read + i)];
 }
 
-static inline float rb_shift(ringbuffer_t* rb) {
+static inline float
+rb_shift(ringbuffer_t* rb) {
     assert(!rb_empty(rb));
     return rb->buffer[rb_mask(rb->read++)];
 }
 
-void        rb_init(ringbuffer_t* rb, uint32_t capacity);
-void        rb_fill(ringbuffer_t* rb, float val);
+void rb_init(ringbuffer_t* rb, uint32_t capacity);
+void rb_fill(ringbuffer_t* rb, float val);
 
 #endif /* ringbuffer_h */
